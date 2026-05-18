@@ -1,0 +1,543 @@
+<!-- CONFLUENCE INSTRUCTIONS:
+1. Create a new Confluence page or edit existing one
+2. Add the "HTML" macro (type /html in the editor)
+3. Paste this ENTIRE file content into the HTML macro
+4. Save and publish
+
+NOTE: This version has ACTUAL Project Owners/POCs extracted from PDFs
+NOTE: Access Level values are placeholders - please update with your actual data
+NOTE: Project names are now clickable links - update the "link" field for each project with the actual Confluence page URL
+      Currently all links are set to "#" as placeholders
+-->
+
+<div id="matrix-view-app">
+<style>
+    #matrix-view-app {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #f5f7fa;
+        padding: 20px;
+    }
+    #matrix-view-app * {
+        box-sizing: border-box;
+    }
+    .mv-header {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .mv-header h1 {
+        font-size: 1.8rem;
+        color: #333;
+        margin: 0 0 6px 0;
+    }
+    .mv-header p {
+        margin: 0;
+        color: #666;
+        font-size: 0.95rem;
+    }
+    .mv-controls {
+        background: white;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .mv-controls-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+    }
+    .mv-controls-row:last-child {
+        margin-bottom: 0;
+    }
+    .mv-search-input {
+        flex: 1;
+        min-width: 220px;
+        padding: 9px 14px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+    .mv-search-input:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+    .mv-filter-pills {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+    }
+    .mv-pill {
+        padding: 7px 14px;
+        border-radius: 18px;
+        border: 2px solid #e0e0e0;
+        background: white;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .mv-pill:hover {
+        border-color: #667eea;
+        background: #f0f3ff;
+    }
+    .mv-pill.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+    .mv-label {
+        font-weight: 600;
+        color: #555;
+        font-size: 0.9rem;
+    }
+    .mv-table-container {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .mv-stats-bar {
+        display: flex;
+        gap: 18px;
+        padding: 13px 18px;
+        background: #f8f9fa;
+        font-size: 0.85rem;
+        color: #666;
+        border-bottom: 1px solid #e0e0e0;
+        flex-wrap: wrap;
+    }
+    .mv-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .mv-stat-item strong {
+        color: #667eea;
+        font-weight: 700;
+    }
+    .mv-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-x: auto;
+    }
+    .mv-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .mv-table th {
+        padding: 13px 16px;
+        text-align: left;
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .mv-table th:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    .mv-table th.sortable::after {
+        content: ' ⇅';
+        opacity: 0.6;
+        font-size: 0.75rem;
+    }
+    .mv-table th.sorted-asc::after {
+        content: ' ▲';
+        opacity: 1;
+    }
+    .mv-table th.sorted-desc::after {
+        content: ' ▼';
+        opacity: 1;
+    }
+    .mv-table tbody tr {
+        border-bottom: 1px solid #f0f0f0;
+        transition: background 0.2s;
+    }
+    .mv-table tbody tr:hover {
+        background: #f8f9fa;
+    }
+    .mv-table tbody tr.hidden {
+        display: none;
+    }
+    .mv-table td {
+        padding: 13px 16px;
+        color: #333;
+        font-size: 0.85rem;
+    }
+    .mv-project-name {
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 3px 0;
+        font-size: 0.9rem;
+    }
+    .mv-project-desc {
+        font-size: 0.8rem;
+        color: #666;
+        line-height: 1.4;
+        margin: 0;
+    }
+    .mv-badge {
+        display: inline-block;
+        padding: 4px 9px;
+        border-radius: 11px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .mv-badge-category {
+        background: #e3f2fd;
+        color: #1976d2;
+    }
+    .mv-badge-asset {
+        background: #f3e5f5;
+        color: #7b1fa2;
+    }
+    .mv-badge-status-active {
+        background: #e8f5e9;
+        color: #388e3c;
+    }
+    .mv-badge-status-inactive {
+        background: #f5f5f5;
+        color: #757575;
+    }
+    .mv-badge-status-tbc {
+        background: #fff3e0;
+        color: #f57c00;
+    }
+    .mv-badge-access {
+        background: #e0f2f1;
+        color: #00796b;
+    }
+    .mv-owner-cell {
+        font-size: 0.85rem;
+        color: #666;
+    }
+    .mv-project-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .mv-project-link:hover {
+        text-decoration: underline;
+        color: #5568d3;
+    }
+    .mv-compact .mv-project-desc {
+        display: none;
+    }
+    .mv-compact td {
+        padding: 9px 16px;
+    }
+    .mv-view-btns {
+        display: flex;
+        gap: 6px;
+    }
+    .mv-view-btn {
+        padding: 7px 14px;
+        border: 2px solid #e0e0e0;
+        background: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+    }
+    .mv-view-btn:hover {
+        border-color: #667eea;
+    }
+    .mv-view-btn.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+    .mv-table-wrapper {
+        overflow-x: auto;
+    }
+</style>
+
+<div class="mv-header">
+    <h1>🗂️ Data Project Catalog - Smart Matrix</h1>
+    <p>Sortable, filterable table view with all project details</p>
+</div>
+
+<div class="mv-controls">
+    <div class="mv-controls-row">
+        <input type="text" id="mvSearchInput" class="mv-search-input" placeholder="Search projects, owners, or descriptions...">
+        <div class="mv-view-btns">
+            <button class="mv-view-btn active" onclick="mvToggleView('detailed')">Detailed</button>
+            <button class="mv-view-btn" onclick="mvToggleView('compact')">Compact</button>
+        </div>
+    </div>
+    <div class="mv-controls-row">
+        <span class="mv-label">Asset Type:</span>
+        <div class="mv-filter-pills" id="mvAssetFilters">
+            <span class="mv-pill active" data-filter="all" onclick="mvFilterAsset(this, 'all')">All</span>
+            <span class="mv-pill" data-filter="Data Collection" onclick="mvFilterAsset(this, 'Data Collection')">Data Collection</span>
+            <span class="mv-pill" data-filter="Workspace" onclick="mvFilterAsset(this, 'Workspace')">Workspace</span>
+        </div>
+    </div>
+    <div class="mv-controls-row">
+        <span class="mv-label">Status:</span>
+        <div class="mv-filter-pills" id="mvStatusFilters">
+            <span class="mv-pill active" data-filter="all" onclick="mvFilterStatus(this, 'all')">All</span>
+            <span class="mv-pill" data-filter="Active" onclick="mvFilterStatus(this, 'Active')">Active</span>
+            <span class="mv-pill" data-filter="Inactive" onclick="mvFilterStatus(this, 'Inactive')">Inactive</span>
+            <span class="mv-pill" data-filter="To Be Created" onclick="mvFilterStatus(this, 'To Be Created')">To Be Created</span>
+        </div>
+    </div>
+    <div class="mv-controls-row">
+        <span class="mv-label">Access Level:</span>
+        <div class="mv-filter-pills" id="mvAccessFilters">
+            <span class="mv-pill active" data-filter="all" onclick="mvFilterAccess(this, 'all')">All</span>
+            <span class="mv-pill" data-filter="Owner" onclick="mvFilterAccess(this, 'Owner')">Owner</span>
+            <span class="mv-pill" data-filter="Writer" onclick="mvFilterAccess(this, 'Writer')">Writer</span>
+            <span class="mv-pill" data-filter="Reader" onclick="mvFilterAccess(this, 'Reader')">Reader</span>
+            <span class="mv-pill" data-filter="Discover" onclick="mvFilterAccess(this, 'Discover')">Discover</span>
+            <span class="mv-pill" data-filter="Admins" onclick="mvFilterAccess(this, 'Admins')">Admins</span>
+        </div>
+    </div>
+    <div class="mv-controls-row">
+        <span class="mv-label">Category:</span>
+        <div class="mv-filter-pills" id="mvCategoryFilters">
+            <span class="mv-pill active" data-filter="all" onclick="mvFilterCategory(this, 'all')">All</span>
+            <span class="mv-pill" data-filter="AI/ML" onclick="mvFilterCategory(this, 'AI/ML')">AI/ML</span>
+            <span class="mv-pill" data-filter="Analytics" onclick="mvFilterCategory(this, 'Analytics')">Analytics</span>
+            <span class="mv-pill" data-filter="Data Infrastructure" onclick="mvFilterCategory(this, 'Data Infrastructure')">Infrastructure</span>
+            <span class="mv-pill" data-filter="Data Quality" onclick="mvFilterCategory(this, 'Data Quality')">Quality</span>
+            <span class="mv-pill" data-filter="External Data" onclick="mvFilterCategory(this, 'External Data')">External</span>
+            <span class="mv-pill" data-filter="Product Data" onclick="mvFilterCategory(this, 'Product Data')">Product</span>
+        </div>
+    </div>
+</div>
+
+<div class="mv-table-container">
+    <div class="mv-stats-bar">
+        <div class="mv-stat-item">📊 Total: <strong>37</strong></div>
+        <div class="mv-stat-item">👁️ Showing: <strong id="mvVisibleCount">37</strong></div>
+        <div class="mv-stat-item">✅ Active: <strong id="mvActiveCount">34</strong></div>
+        <div class="mv-stat-item">🏢 Workspaces: <strong id="mvWorkspaceCount">12</strong></div>
+        <div class="mv-stat-item">📦 Data Collections: <strong id="mvCollectionCount">25</strong></div>
+    </div>
+    <div class="mv-table-wrapper">
+        <table class="mv-table" id="mvProjectTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-sort="name" onclick="mvSortTable('name')">Project Name</th>
+                    <th class="sortable" data-sort="category" onclick="mvSortTable('category')">Category</th>
+                    <th class="sortable" data-sort="assetType" onclick="mvSortTable('assetType')">Asset Type</th>
+                    <th class="sortable" data-sort="status" onclick="mvSortTable('status')">Status</th>
+                    <th class="sortable" data-sort="accessLevel" onclick="mvSortTable('accessLevel')">Access Level</th>
+                    <th class="sortable" data-sort="owner" onclick="mvSortTable('owner')">Owner</th>
+                </tr>
+            </thead>
+            <tbody id="mvTableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+(function() {
+    var projects = [
+        { name: "AI Agent Offline Monitoring (Dogfood)", desc: "Monitoring AI agents in production", category: "AI/ML", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Ashley Wilson, Geoff Masterson, Chelsea Patrichuk, Mike Feng", link: "#" },
+        { name: "AI Agent Offline Monitoring (Non-Dogfood)", desc: "Extended AI agent monitoring for non-dogfood", category: "AI/ML", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Ashley Wilson, Geoff Masterson, Chelsea Patrichuk, Mike Feng, Sara Vaithilingam, Derek Sun", link: "#" },
+        { name: "Fraud Modeling", desc: "ML pipeline for fraud detection and risk scoring", category: "AI/ML", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "[Squad] PHP Sentinels", link: "#" },
+        { name: "Base-Lifelong Analytics Gold Layer", desc: "Gold layer analytics datasets for Base-Lifelong", category: "Analytics", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Joy Huynh", link: "#" },
+        { name: "BI Developer AI Analyst", desc: "AI-powered business intelligence analyst tool", category: "AI/ML", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", owner: "TBD", link: "#" },
+        { name: "Finance Analyst AI Agent", desc: "AI agent for financial analysis", category: "AI/ML", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", owner: "TBD", link: "#" },
+        { name: "Data Quality Product Metrics", desc: "Comprehensive DQ metrics and monitoring", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Ana Han", link: "#" },
+        { name: "1P and Lightpath Silver Layer Data", desc: "Silver layer with data quality monitoring", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Joy Huynh", link: "#" },
+        { name: "Lightpath Internal Gold Layer", desc: "Internal gold layer for analytics", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Emma Moore", link: "#" },
+        { name: "Lightpath SFTP Outbound Delivery", desc: "Secure data delivery to partners", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Writer", owner: "TBD", link: "#" },
+        { name: "VerilyMe Product Data", desc: "Core VerilyMe platform product data", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "David Drummond, Akhil Goswami, Renuka Chadha, Shailee Thaker, Joy Huynh", link: "#" },
+        { name: "Zus Explore (Onduo HIE)", desc: "Health information exchange from Zus", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Bin Fu", link: "#" },
+        { name: "Zus Health Internal Data Collection", desc: "Internal Zus data for analysis", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Joy Huynh", link: "#" },
+        { name: "Zus and VerilyMe Silver Layer for SMEs", desc: "Silver layer for model development", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Writer", owner: "Lawrence Deang, Chelsea Patrichuk", link: "#" },
+        { name: "Zus Benchmarking to Claims", desc: "Benchmarking Zus data to claims", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "Joy Huynh, Chelsea Patrichuk", link: "#" },
+        { name: "Zus Missing Data Tracker", desc: "Tracking missing data patterns in Zus", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Chelsea Ye, Lawrence Deang", link: "#" },
+        { name: "Onduo Datamarts and Billing Migration", desc: "Migration to modernized infrastructure", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", owner: "TBD", link: "#" },
+        { name: "Study Migrations", desc: "Large-scale study data migration", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", owner: "TBD", link: "#" },
+        { name: "Legacy CSP Migration for DSRs", desc: "Enable data subject rights requests", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", owner: "TBD", link: "#" },
+        { name: "Workbench Unique Login Count", desc: "User engagement metrics", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "Data Science Analytics via Workbench", desc: "Platform for data science analytics", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "Vincent Tseng", link: "#" },
+        { name: "ML Development in Workbench", desc: "ML model development environment", category: "AI/ML", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "Emma Moore", link: "#" },
+        { name: "Insight Engine", desc: "Automated insights generation", category: "Analytics", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", owner: "Claudia Serrano Amenos", link: "#" },
+        { name: "HealthVerity Data Integration", desc: "Integration of HealthVerity sources", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "AI-READI Public Dataset Ingestion", desc: "Public research datasets in Workbench", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Discover", owner: "Lawrence Deang, Akshaya Vagula Booshanam", link: "#" },
+        { name: "MJFF Personalized Parkinson's Project", desc: "Parkinson's research in Workbench", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "TBD", link: "#" },
+        { name: "Data Refinery UTSW", desc: "Data processing for UT Southwestern", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "Sightline Wastewater Dataset", desc: "Wastewater epidemiology dataset", category: "Analytics", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Alessandra Breschi, Ali Alagha, Renuka Chadha, Sam Hornstein, Joy Huynh", link: "#" },
+        { name: "Sightline External Data Deliveries", desc: "Wastewater data delivery to partners", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Writer", owner: "Pouya Kheradpour, Alessandra Breschi, Ali Alagha, Sam Hornstein, Joy Huynh", link: "#" },
+        { name: "PHA Non-Dogfood LSE Pipeline", desc: "Personal Health Assistant pipeline", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Lawrence Deang, Chelsea Patrichuk, Mike Feng", link: "#" },
+        { name: "PHA Vignettes for Validation", desc: "Validation vignettes for PHA testing", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "Sensor Export", desc: "Wearable sensor data export", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Derek Bee, Rishabh Chowdhary", link: "#" },
+        { name: "Eligibility Data Mart", desc: "Program eligibility determination", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "Protege Data Ingestion", desc: "Clinical trial data ingestion", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "TBD", link: "#" },
+        { name: "Stargazer Commercial Data Archive", desc: "Archive of commercial data", category: "Data Infrastructure", assetType: "Data Collection", status: "Inactive", accessLevel: "Admins", owner: "TBD", link: "#" },
+        { name: "De-Identified Zus and Base Internal Data", desc: "De-identified collections with Claude access", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", owner: "Joy Huynh", link: "#" },
+        { name: "Lightpath Marketing Analytics", desc: "Data for marketing campaigns", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", owner: "TBD", link: "#" }
+    ];
+
+    var currentSort = { column: null, direction: 'asc' };
+    var currentFilters = { category: 'all', assetType: 'all', status: 'all', accessLevel: 'all', search: '' };
+
+    function renderTable() {
+        var tbody = document.getElementById('mvTableBody');
+        var filtered = projects.filter(function(p) {
+            var matchesCategory = currentFilters.category === 'all' || p.category === currentFilters.category;
+            var matchesAsset = currentFilters.assetType === 'all' || p.assetType === currentFilters.assetType;
+            var matchesStatus = currentFilters.status === 'all' || p.status === currentFilters.status;
+            var matchesAccess = currentFilters.accessLevel === 'all' || p.accessLevel === currentFilters.accessLevel;
+            var searchTerm = currentFilters.search.toLowerCase();
+            var matchesSearch = !searchTerm ||
+                p.name.toLowerCase().indexOf(searchTerm) !== -1 ||
+                p.desc.toLowerCase().indexOf(searchTerm) !== -1 ||
+                p.owner.toLowerCase().indexOf(searchTerm) !== -1;
+            return matchesCategory && matchesAsset && matchesStatus && matchesAccess && matchesSearch;
+        });
+
+        if (currentSort.column) {
+            filtered.sort(function(a, b) {
+                var aVal = a[currentSort.column];
+                var bVal = b[currentSort.column];
+
+                // Special sorting logic for owner column
+                if (currentSort.column === 'owner') {
+                    // Function to determine sort priority
+                    function getOwnerPriority(owner) {
+                        if (owner === 'TBD') return 3; // TBD goes last
+                        if (owner.indexOf('[Squad]') === 0) return 2; // Squad names go second
+                        return 1; // Individual person names go first
+                    }
+
+                    var aPriority = getOwnerPriority(aVal);
+                    var bPriority = getOwnerPriority(bVal);
+
+                    // If different priorities, sort by priority
+                    if (aPriority !== bPriority) {
+                        return currentSort.direction === 'asc' ?
+                            aPriority - bPriority :
+                            bPriority - aPriority;
+                    }
+
+                    // Same priority - sort alphabetically by first name
+                    var aFirstName = aVal.split(',')[0].trim().replace('@', '').replace('[Squad] ', '');
+                    var bFirstName = bVal.split(',')[0].trim().replace('@', '').replace('[Squad] ', '');
+                    var comparison = aFirstName.localeCompare(bFirstName);
+                    return currentSort.direction === 'asc' ? comparison : -comparison;
+                }
+
+                var comparison = aVal.localeCompare(bVal);
+                return currentSort.direction === 'asc' ? comparison : -comparison;
+            });
+        }
+
+        tbody.innerHTML = filtered.map(function(p) {
+            var statusClass = p.status === 'Active' ? 'mv-badge-status-active' :
+                             p.status === 'Inactive' ? 'mv-badge-status-inactive' : 'mv-badge-status-tbc';
+            return '<tr>' +
+                '<td><div class="mv-project-name"><a href="' + p.link + '" class="mv-project-link">' + p.name + '</a></div><p class="mv-project-desc">' + p.desc + '</p></td>' +
+                '<td><span class="mv-badge mv-badge-category">' + p.category + '</span></td>' +
+                '<td><span class="mv-badge mv-badge-asset">' + p.assetType + '</span></td>' +
+                '<td><span class="mv-badge ' + statusClass + '">' + p.status + '</span></td>' +
+                '<td><span class="mv-badge mv-badge-access">' + p.accessLevel + '</span></td>' +
+                '<td class="mv-owner-cell">' + p.owner + '</td>' +
+                '</tr>';
+        }).join('');
+
+        // Update stats
+        document.getElementById('mvVisibleCount').textContent = filtered.length;
+        var activeCount = filtered.filter(function(p) { return p.status === 'Active'; }).length;
+        var workspaceCount = filtered.filter(function(p) { return p.assetType === 'Workspace'; }).length;
+        var collectionCount = filtered.filter(function(p) { return p.assetType === 'Data Collection'; }).length;
+        document.getElementById('mvActiveCount').textContent = activeCount;
+        document.getElementById('mvWorkspaceCount').textContent = workspaceCount;
+        document.getElementById('mvCollectionCount').textContent = collectionCount;
+    }
+
+    function mvSortTable(column) {
+        if (currentSort.column === column) {
+            currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+        } else {
+            currentSort.column = column;
+            currentSort.direction = 'asc';
+        }
+
+        document.querySelectorAll('.mv-table th.sortable').forEach(function(h) {
+            h.classList.remove('sorted-asc', 'sorted-desc');
+        });
+        var th = document.querySelector('.mv-table th[data-sort="' + column + '"]');
+        th.classList.add(currentSort.direction === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+        renderTable();
+    }
+
+    function mvFilterCategory(pill, filter) {
+        document.querySelectorAll('#mvCategoryFilters .mv-pill').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        pill.classList.add('active');
+        currentFilters.category = filter;
+        renderTable();
+    }
+
+    function mvFilterAsset(pill, filter) {
+        document.querySelectorAll('#mvAssetFilters .mv-pill').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        pill.classList.add('active');
+        currentFilters.assetType = filter;
+        renderTable();
+    }
+
+    function mvFilterStatus(pill, filter) {
+        document.querySelectorAll('#mvStatusFilters .mv-pill').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        pill.classList.add('active');
+        currentFilters.status = filter;
+        renderTable();
+    }
+
+    function mvFilterAccess(pill, filter) {
+        document.querySelectorAll('#mvAccessFilters .mv-pill').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        pill.classList.add('active');
+        currentFilters.accessLevel = filter;
+        renderTable();
+    }
+
+    function mvToggleView(view) {
+        var table = document.getElementById('mvProjectTable');
+        var buttons = document.querySelectorAll('.mv-view-btn');
+        buttons.forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        if (view === 'compact') {
+            table.classList.add('mv-compact');
+        } else {
+            table.classList.remove('mv-compact');
+        }
+    }
+
+    window.mvSortTable = mvSortTable;
+    window.mvFilterCategory = mvFilterCategory;
+    window.mvFilterAsset = mvFilterAsset;
+    window.mvFilterStatus = mvFilterStatus;
+    window.mvFilterAccess = mvFilterAccess;
+    window.mvToggleView = mvToggleView;
+
+    document.getElementById('mvSearchInput').addEventListener('input', function(e) {
+        currentFilters.search = e.target.value;
+        renderTable();
+    });
+
+    renderTable();
+})();
+</script>
+</div>

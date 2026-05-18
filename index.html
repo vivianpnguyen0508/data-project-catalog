@@ -1,416 +1,181 @@
-<!-- CONFLUENCE INSTRUCTIONS:
-1. Create a new Confluence page or edit existing one
-2. Add the "HTML" macro (type /html in the editor)
-3. Paste this ENTIRE file content into the HTML macro
-4. Save and publish
-
-NOTE: Access Level values are placeholders - please update with your actual data
--->
-
-<div id="project-catalog-app">
-<style>
-    #project-catalog-app {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: #f5f7fa;
-        padding: 20px;
-        border-radius: 8px;
-    }
-    #project-catalog-app * {
-        box-sizing: border-box;
-    }
-    .pc-header {
-        text-align: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 30px;
-        border-radius: 12px;
-        margin-bottom: 25px;
-    }
-    .pc-header h1 {
-        font-size: 2rem;
-        margin: 0 0 8px 0;
-    }
-    .pc-header p {
-        margin: 0;
-        opacity: 0.95;
-    }
-    .pc-search-controls {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        margin-bottom: 25px;
-    }
-    .pc-search-box {
-        position: relative;
-        margin-bottom: 18px;
-    }
-    .pc-search-box input {
-        width: 100%;
-        padding: 14px 45px 14px 18px;
-        font-size: 1rem;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        transition: all 0.3s;
-    }
-    .pc-search-box input:focus {
-        outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    .pc-search-icon {
-        position: absolute;
-        right: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.2rem;
-    }
-    .pc-filters {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-    }
-    .pc-filter-group label {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 6px;
-        color: #333;
-        font-size: 0.9rem;
-    }
-    .pc-filter-group select {
-        width: 100%;
-        padding: 10px;
-        border: 2px solid #e0e0e0;
-        border-radius: 6px;
-        font-size: 0.95rem;
-        cursor: pointer;
-        background: white;
-    }
-    .pc-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-    .pc-stat-card {
-        background: white;
-        padding: 18px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        text-align: center;
-    }
-    .pc-stat-number {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #667eea;
-        margin: 0;
-    }
-    .pc-stat-label {
-        color: #666;
-        margin: 5px 0 0 0;
-        font-size: 0.9rem;
-    }
-    .pc-projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 18px;
-    }
-    .pc-project-card {
-        background: white;
-        border-radius: 10px;
-        padding: 22px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        transition: transform 0.2s, box-shadow 0.2s;
-        cursor: pointer;
-    }
-    .pc-project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-    .pc-project-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #333;
-        margin: 0 0 12px 0;
-        line-height: 1.4;
-    }
-    .pc-project-meta {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 14px;
-        flex-wrap: wrap;
-    }
-    .pc-tag {
-        padding: 5px 11px;
-        border-radius: 14px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    .pc-tag-category {
-        background: #e3f2fd;
-        color: #1976d2;
-    }
-    .pc-tag-status {
-        background: #e8f5e9;
-        color: #388e3c;
-    }
-    .pc-tag-status-inactive {
-        background: #f5f5f5;
-        color: #757575;
-    }
-    .pc-tag-status-tbc {
-        background: #fff3e0;
-        color: #f57c00;
-    }
-    .pc-tag-asset {
-        background: #f3e5f5;
-        color: #7b1fa2;
-    }
-    .pc-tag-access {
-        background: #e0f2f1;
-        color: #00796b;
-    }
-    .pc-project-description {
-        color: #666;
-        line-height: 1.6;
-        margin: 0 0 14px 0;
-        font-size: 0.9rem;
-    }
-    .pc-project-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 14px;
-        border-top: 1px solid #e8e8e8;
-    }
-    .pc-owner {
-        font-size: 0.85rem;
-        color: #666;
-    }
-    .pc-view-link {
-        color: #667eea;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.85rem;
-    }
-    .pc-view-link:hover {
-        text-decoration: underline;
-    }
-    .pc-no-results {
-        text-align: center;
-        padding: 50px 20px;
-        background: white;
-        border-radius: 10px;
-        display: none;
-    }
-    .pc-no-results.show {
-        display: block;
-    }
-    .pc-no-results h3 {
-        font-size: 1.3rem;
-        margin: 0 0 8px 0;
-        color: #666;
-    }
-    .pc-no-results p {
-        margin: 0;
-        color: #999;
-    }
-</style>
-
-<div class="pc-header">
-    <h1>📊 Data Project Catalog</h1>
-    <p>Interactive dashboard to explore and discover data projects</p>
-</div>
-
-<div class="pc-search-controls">
-    <div class="pc-search-box">
-        <input type="text" id="pcSearchInput" placeholder="Search projects by name, description, or owner...">
-        <span class="pc-search-icon">🔍</span>
-    </div>
-    <div class="pc-filters">
-        <div class="pc-filter-group">
-            <label>Asset Type</label>
-            <select id="pcAssetTypeFilter">
-                <option value="">All Types</option>
-                <option value="Data Collection">Data Collection</option>
-                <option value="Workspace">Workspace</option>
-            </select>
-        </div>
-        <div class="pc-filter-group">
-            <label>Status</label>
-            <select id="pcStatusFilter">
-                <option value="">All Statuses</option>
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                <option value="To Be Created">To Be Created</option>
-            </select>
-        </div>
-        <div class="pc-filter-group">
-            <label>Access Level</label>
-            <select id="pcAccessFilter">
-                <option value="">All Access Levels</option>
-                <option value="Owner">Owner</option>
-                <option value="Writer">Writer</option>
-                <option value="Reader">Reader</option>
-                <option value="Discover">Discover</option>
-                <option value="Admins">Admins</option>
-            </select>
-        </div>
-        <div class="pc-filter-group">
-            <label>Category</label>
-            <select id="pcCategoryFilter">
-                <option value="">All Categories</option>
-                <option value="AI/ML">AI/ML</option>
-                <option value="Analytics">Analytics</option>
-                <option value="Data Infrastructure">Data Infrastructure</option>
-                <option value="Data Quality">Data Quality</option>
-                <option value="External Data">External Data</option>
-                <option value="Product Data">Product Data</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="pc-stats">
-    <div class="pc-stat-card">
-        <div class="pc-stat-number" id="pcTotalProjects">37</div>
-        <div class="pc-stat-label">Total Projects</div>
-    </div>
-    <div class="pc-stat-card">
-        <div class="pc-stat-number" id="pcVisibleProjects">37</div>
-        <div class="pc-stat-label">Showing</div>
-    </div>
-    <div class="pc-stat-card">
-        <div class="pc-stat-number" id="pcActiveCount">34</div>
-        <div class="pc-stat-label">Active</div>
-    </div>
-    <div class="pc-stat-card">
-        <div class="pc-stat-number" id="pcWorkspaceCount">12</div>
-        <div class="pc-stat-label">Workspaces</div>
-    </div>
-</div>
-
-<div class="pc-projects-grid" id="pcProjectsGrid"></div>
-<div class="pc-no-results" id="pcNoResults">
-    <h3>No projects found</h3>
-    <p>Try adjusting your search or filters</p>
-</div>
-
-<script>
-(function() {
-    var projects = [
-        { title: "AI Agent Offline Monitoring (Dogfood)", category: "AI/ML", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Monitoring and evaluation of AI agents in production, including meal logging, health data agents, and personal health assistants.", owner: "Ashley Wilson, Chelsea Patrichuk", confluenceUrl: "DATA-AI%20Agent%20Offline%20Monitoring%20(Dogfood)" },
-        { title: "AI Agent Offline Monitoring (Non-Dogfood)", category: "AI/ML", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Extended AI agent monitoring for non-dogfood environments with comprehensive safety and performance tracking.", owner: "Data Management Team", confluenceUrl: "DATA-AI%20Agent%20Offline%20Monitoring%20(Non-Dogfood)" },
-        { title: "Fraud Modeling", category: "AI/ML", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "ML pipeline for fraud detection and risk scoring for VerilyMe participants using BQ data in Verily Workbench.", owner: "PHP Sentinels", confluenceUrl: "DATA-Fraud%20Modeling" },
-        { title: "Base-Lifelong Analytics Gold Layer in Workbench", category: "Analytics", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Gold layer analytics datasets for Base-Lifelong program accessible in Verily Workbench for analysis.", owner: "Data Management Team", confluenceUrl: "DATA-Base-Lifelong%20Analytics%20Gold%20Layer" },
-        { title: "BI Developer AI Analyst", category: "AI/ML", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", description: "AI-powered business intelligence analyst tool for automated data analysis and insights generation.", owner: "Platform Team", confluenceUrl: "DATA-BI%20Developer%20AI%20Analyst" },
-        { title: "Finance Analyst AI Agent", category: "AI/ML", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", description: "AI agent designed to assist with financial analysis and reporting tasks.", owner: "Finance Analytics", confluenceUrl: "DATA-Finance%20Analyst%20AI%20Agent" },
-        { title: "Data Quality Product Metrics", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Comprehensive metrics and monitoring for data quality across product data collections.", owner: "Data Quality Team", confluenceUrl: "DATA-Data%20Quality%20Product%20Metrics" },
-        { title: "1P and Lightpath Silver Layer Data in Workbench", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Silver layer data access for first-party and Lightpath data with data quality monitoring.", owner: "Lightpath Team", confluenceUrl: "DATA-1P%20and%20Lightpath%20Silver%20Layer" },
-        { title: "Lightpath Internal Gold Layer", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Internal gold layer datasets for Lightpath program analytics and reporting.", owner: "Lightpath Team", confluenceUrl: "DATA-Lightpath%20Internal%20Gold%20Layer" },
-        { title: "Lightpath SFTP Outbound Data Delivery", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Writer", description: "Secure SFTP pipeline for delivering Lightpath data to external partners.", owner: "Data Delivery Team", confluenceUrl: "DATA-Lightpath%20SFTP%20Outbound" },
-        { title: "VerilyMe Product Data", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Core product data collection and analytics for VerilyMe platform.", owner: "VerilyMe Team", confluenceUrl: "DATA-VerilyMe%20Product%20Data" },
-        { title: "Zus Explore (Onduo HIE)", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Health information exchange data from Zus for Onduo program analytics.", owner: "Onduo Team", confluenceUrl: "DATA-Zus%20Explore" },
-        { title: "Zus Health Internal Data Collection", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Internal collection of Zus Health data for analysis and model development.", owner: "Data Management", confluenceUrl: "DATA-Zus%20Health%20Internal" },
-        { title: "Zus and VerilyMe Silver Layer Access for Model SMEs", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Writer", description: "Silver layer access to Zus and VerilyMe data for subject matter experts and model development.", owner: "Data Science Team", confluenceUrl: "DATA-Zus%20VerilyMe%20Silver%20Layer" },
-        { title: "Zus Benchmarking to Claims", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "Benchmarking analysis comparing Zus data quality and coverage to claims data.", owner: "Analytics Team", confluenceUrl: "DATA-Zus%20Benchmarking" },
-        { title: "Zus Missing Data Tracker", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Tracking and monitoring missing data patterns in Zus health information exchange.", owner: "Data Quality Team", confluenceUrl: "DATA-Zus%20Missing%20Data%20Tracker" },
-        { title: "Onduo: Datamarts and Billing Bucket Migration", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", description: "Migration of Onduo datamarts and billing data to new infrastructure.", owner: "Onduo Platform", confluenceUrl: "DATA-Onduo%20Datamarts%20Migration" },
-        { title: "Study Migrations", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", description: "Large-scale migration of clinical study data to modernized infrastructure.", owner: "Data Management", confluenceUrl: "DATA-Study%20Migrations" },
-        { title: "Legacy CSP Migration to Enable DSRs", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Admins", description: "Migration of legacy customer service platform to enable data subject rights requests.", owner: "Privacy Engineering", confluenceUrl: "DATA-Legacy%20CSP%20Migration" },
-        { title: "Workbench Unique Login Count Metric", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Product metric tracking unique user logins to Verily Workbench platform.", owner: "Workbench Analytics", confluenceUrl: "DATA-Workbench%20Login%20Metric" },
-        { title: "Data Science Analytics & Development via Verily Workbench", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "Platform for data science analytics and development work using Verily Workbench.", owner: "Data Science Team", confluenceUrl: "DATA-Data%20Science%20Analytics%20Workbench" },
-        { title: "ML Development in Workbench", category: "AI/ML", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "Machine learning model development and training environment in Workbench.", owner: "ML Engineering", confluenceUrl: "ML%20Development%20Workbench" },
-        { title: "Insight Engine", category: "Analytics", assetType: "Workspace", status: "To Be Created", accessLevel: "Owner", description: "Automated insights generation engine for data analytics and pattern discovery.", owner: "Platform Team", confluenceUrl: "DATA-Insight%20Engine" },
-        { title: "HealthVerity Data Integration", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Integration of HealthVerity external data sources for analytics.", owner: "External Data Team", confluenceUrl: "DATA-HealthVerity%20Integration" },
-        { title: "AI-READI Public Dataset Ingestion to VWB", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Discover", description: "Ingestion of AI-READI public datasets into Verily Workbench for research.", owner: "Research Data Team", confluenceUrl: "DATA-AI-READI%20Ingestion" },
-        { title: "MJFF Personalized Parkinson's Project", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "Michael J. Fox Foundation partnership for Parkinson's research in Workbench.", owner: "Research Partnerships", confluenceUrl: "DATA-MJFF%20Parkinsons" },
-        { title: "Data Refinery UTSW", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Data refinement and processing pipeline for UT Southwestern partnership.", owner: "Data Engineering", confluenceUrl: "DATA-Refinery%20UTSW" },
-        { title: "Sightline Wastewater Dataset in Workbench", category: "Analytics", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Sightline wastewater epidemiology dataset available in Workbench for analysis.", owner: "Sightline Team", confluenceUrl: "DATA-Sightline%20Wastewater%20Dataset" },
-        { title: "Sightline Wastewater: External Data Deliveries", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Writer", description: "External delivery of Sightline wastewater data to partners via Workbench.", owner: "Sightline Team", confluenceUrl: "DATA-Sightline%20External%20Delivery" },
-        { title: "PHA Non-Dogfood LSE Pipeline", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Personal Health Assistant data pipeline for non-dogfood LSE environments.", owner: "PHA Team", confluenceUrl: "DATA-PHA%20LSE%20Pipeline" },
-        { title: "PHA Vignettes for Analytical Validation Design", category: "Data Quality", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Validation vignettes for Personal Health Assistant analytical testing.", owner: "PHA Quality Team", confluenceUrl: "DATA-PHA%20Vignettes" },
-        { title: "Sensor Export", category: "Product Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Export pipeline for sensor data from wearable devices and health monitors.", owner: "Device Data Team", confluenceUrl: "DATA-Sensor%20Export" },
-        { title: "Eligibility Data Mart Data Project", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Data mart for program eligibility determination and tracking.", owner: "Enrollment Team", confluenceUrl: "DATA-Eligibility%20Data%20Mart" },
-        { title: "Protege Data Ingestion", category: "External Data", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "Ingestion pipeline for Protege clinical trial and research data.", owner: "Research Data", confluenceUrl: "DATA-Protege%20Ingestion" },
-        { title: "Stargazer Commercial Data Archive", category: "Data Infrastructure", assetType: "Data Collection", status: "Inactive", accessLevel: "Admins", description: "Archive of commercial data from Stargazer program for long-term storage.", owner: "Archive Team", confluenceUrl: "DATA-Stargazer%20Archive" },
-        { title: "De-Identified Non-Dogfood Zus and Base Internal Data", category: "Data Infrastructure", assetType: "Data Collection", status: "Active", accessLevel: "Reader", description: "De-identified internal data collections for Zus and Base with Claude AI access in workspace.", owner: "Data Management", confluenceUrl: "DATA-DeIdentified%20Zus%20Base" },
-        { title: "Lightpath Data Development For Marketing", category: "Analytics", assetType: "Workspace", status: "Active", accessLevel: "Writer", description: "Lightpath data development project for marketing outreach and analytics campaigns.", owner: "Marketing Analytics", confluenceUrl: "DATA-Lightpath%20Marketing" }
-    ];
-
-    var filteredProjects = projects.slice();
-
-    function renderProjects() {
-        var grid = document.getElementById('pcProjectsGrid');
-        var noResults = document.getElementById('pcNoResults');
-
-        if (filteredProjects.length === 0) {
-            grid.style.display = 'none';
-            noResults.classList.add('show');
-        } else {
-            grid.style.display = 'grid';
-            noResults.classList.remove('show');
-
-            grid.innerHTML = filteredProjects.map(function(project) {
-                var statusClass = project.status === 'Active' ? 'pc-tag-status' :
-                                 project.status === 'Inactive' ? 'pc-tag-status-inactive' : 'pc-tag-status-tbc';
-                return '<div class="pc-project-card">' +
-                    '<div class="pc-project-title">' + project.title + '</div>' +
-                    '<div class="pc-project-meta">' +
-                    '<span class="pc-tag pc-tag-category">' + project.category + '</span>' +
-                    '<span class="pc-tag pc-tag-asset">' + project.assetType + '</span>' +
-                    '<span class="pc-tag ' + statusClass + '">' + project.status + '</span>' +
-                    '<span class="pc-tag pc-tag-access">' + project.accessLevel + '</span>' +
-                    '</div>' +
-                    '<div class="pc-project-description">' + project.description + '</div>' +
-                    '<div class="pc-project-footer">' +
-                    '<div class="pc-owner">👤 ' + project.owner + '</div>' +
-                    '<a href="' + project.confluenceUrl + '" class="pc-view-link">View Page →</a>' +
-                    '</div>' +
-                    '</div>';
-            }).join('');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Project Catalog - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .demo-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .demo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .demo-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .demo-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        .demo-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .demo-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .demo-features li {
+            color: #555;
+            padding: 6px 0;
+            font-size: 0.9rem;
+        }
+        .demo-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .demo-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .demo-button:hover {
+            opacity: 0.9;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        .footer-links {
+            margin-top: 15px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            opacity: 0.9;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Data Project Catalog</h1>
+            <p>Choose your view to explore 37 data projects</p>
+        </div>
 
-        document.getElementById('pcVisibleProjects').textContent = filteredProjects.length;
+        <div class="demo-grid">
+            <a href="dashboard.html" class="demo-card">
+                <div class="demo-icon">🎴</div>
+                <div class="demo-title">Dashboard View</div>
+                <div class="demo-description">
+                    Interactive card-based dashboard with visual project cards
+                </div>
+                <ul class="demo-features">
+                    <li>Beautiful card layout</li>
+                    <li>Real-time search</li>
+                    <li>Multi-filter controls</li>
+                    <li>Live statistics</li>
+                </ul>
+                <span class="demo-button">Open Dashboard →</span>
+            </a>
 
-        // Update stats
-        var activeCount = filteredProjects.filter(function(p) { return p.status === 'Active'; }).length;
-        var workspaceCount = filteredProjects.filter(function(p) { return p.assetType === 'Workspace'; }).length;
-        document.getElementById('pcActiveCount').textContent = activeCount;
-        document.getElementById('pcWorkspaceCount').textContent = workspaceCount;
-    }
+            <a href="matrix.html" class="demo-card">
+                <div class="demo-icon">📋</div>
+                <div class="demo-title">Matrix View</div>
+                <div class="demo-description">
+                    Sortable table view with all project details at a glance
+                </div>
+                <ul class="demo-features">
+                    <li>Sortable columns</li>
+                    <li>Compact/Detailed modes</li>
+                    <li>Advanced filtering</li>
+                    <li>Quick search</li>
+                </ul>
+                <span class="demo-button">Open Matrix →</span>
+            </a>
+        </div>
 
-    function applyFilters() {
-        var searchTerm = document.getElementById('pcSearchInput').value.toLowerCase();
-        var category = document.getElementById('pcCategoryFilter').value;
-        var status = document.getElementById('pcStatusFilter').value;
-        var assetType = document.getElementById('pcAssetTypeFilter').value;
-        var accessLevel = document.getElementById('pcAccessFilter').value;
-
-        filteredProjects = projects.filter(function(project) {
-            var matchesSearch = !searchTerm ||
-                project.title.toLowerCase().indexOf(searchTerm) !== -1 ||
-                project.description.toLowerCase().indexOf(searchTerm) !== -1 ||
-                project.owner.toLowerCase().indexOf(searchTerm) !== -1;
-
-            var matchesCategory = !category || project.category === category;
-            var matchesStatus = !status || project.status === status;
-            var matchesAssetType = !assetType || project.assetType === assetType;
-            var matchesAccessLevel = !accessLevel || project.accessLevel === accessLevel;
-
-            return matchesSearch && matchesCategory && matchesStatus && matchesAssetType && matchesAccessLevel;
-        });
-
-        renderProjects();
-    }
-
-    document.getElementById('pcSearchInput').addEventListener('input', applyFilters);
-    document.getElementById('pcCategoryFilter').addEventListener('change', applyFilters);
-    document.getElementById('pcStatusFilter').addEventListener('change', applyFilters);
-    document.getElementById('pcAssetTypeFilter').addEventListener('change', applyFilters);
-    document.getElementById('pcAccessFilter').addEventListener('change', applyFilters);
-
-    renderProjects();
-})();
-</script>
-</div>
+        <div class="footer">
+            <p>Interactive Data Project Catalog Demos</p>
+            <div class="footer-links">
+                <a href="dashboard.html">Dashboard</a> |
+                <a href="matrix.html">Matrix</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
