@@ -1,0 +1,1314 @@
+[
+  {
+    "name": "Eligibility Data Mart Data Project",
+    "category": "Data Infrastructure",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Data Mart for Lightpath Eligibility Data supporting Marketing, Reporting, and Support needs, pulling in FHIR mirror data and transforming it for use in external systems like Salesforce Marketing Cloud and analytical use cases.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "Eligibility Data Mart",
+      "Marketing Gold Layer",
+      "Product Analytics Gold Layer",
+      "BI Analytics Gold Layer"
+    ],
+    "data_collection_ids": [],
+    "connected_resources": {
+      "gold_marketing_datamart": [
+        "silver_operational_filtered_lightpath"
+      ]
+    },
+    "reader_groups": [
+      "analysis-job-gold-marketing",
+      "analysis-job-gold-bi-analytics"
+    ],
+    "writer_groups": [
+      "analysis-job-silver-views"
+    ],
+    "owner_groups": [
+      "analysis-job-gold-solutions"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1565097985/Eligibility+Data+Mart+Data+Project",
+    "owner": "Data Management",
+    "desc": "Data mart for Lightpath eligibility supporting marketing and analytics"
+  },
+  {
+    "name": "Data Science Analytics & Development via Verily Workbench",
+    "category": "Data Science",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Data analysis workspace for Digital Measures Data Science team to perform data analysis and model development on both internal and external datasets.",
+    "workspaces": [
+      "Data Science Analysis Internal Workspace"
+    ],
+    "workspace_ids": [
+      "data_science_analysis_internal"
+    ],
+    "data_collections": [
+      "Baseline Health study",
+      "AURORA",
+      "Picard Core Technical Feasibility Study",
+      "Picard E1",
+      "Study Watch AF Detection Investigation Study",
+      "Study Watch AF Detection (Zin2) Study",
+      "PPP Main"
+    ],
+    "data_collection_ids": [
+      "bhs-ingest-data-collection",
+      "aurora-ingest-data-collection",
+      "picard-core-technical-feasibility-dc",
+      "picard-e1-ingest-data-collection",
+      "study-watch-af-ingest-data-collection",
+      "study-watch-ingest-data-collection",
+      "ppp-mc-ingest-data-collection"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1748533272/Data+Science+Analytics+Development+via+Verily+Workbench",
+    "owner": "Vincent Tseng",
+    "desc": "Data analysis workspace for Data Science AI/ML development"
+  },
+  {
+    "name": "Finance Analyst AI Agent",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "AI Agent for Finance Analysis - Template project placeholder.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1977843715/Finance+Analyst+AI+Agent",
+    "owner": "Finance",
+    "desc": "AI agent for finance analysis"
+  },
+  {
+    "name": "MJFF Personalized Parkinson's Project & Verily Workbench",
+    "category": "Research",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Owner",
+    "description": "Michael J Fox Foundation Grant Award Project for Personalized Parkinson Project (PPP), a 2-year observational study following 517 people with Parkinson's disease. Includes PEP Data Repository migration from Google to VWB.",
+    "workspaces": [
+      "Protege Ingestion Workspace - Internal",
+      "Protege Ingestion Workspace - External"
+    ],
+    "workspace_ids": [
+      "protege-ingestion-ws-int",
+      "protege-ingestion-ws-ext"
+    ],
+    "data_collections": [
+      "PPP-PEP Database",
+      "Protege Ingestion Data Collection - Internal",
+      "Protege Ingestion Data Collection - External"
+    ],
+    "data_collection_ids": [
+      "ppp-pep-storage-vwb",
+      "protege-ingestion-dc-int",
+      "protege-ingestion-dc-ext"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [
+      "verily-aod-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1521975570/MJFF+Personalized+Parkinson+s+Project+Verily+Workbench",
+    "owner": "MJFF/Verily Partnership",
+    "desc": "Parkinson's disease observational study with PPP-PEP data migration"
+  },
+  {
+    "name": "PHA Vignettes for Analytical Validation Design",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Biostats generating vignettes (AI-generated synthetic data) that mimic data from healthcare providers for analytical validation on the PHA agent. Data accessed internally through Workbench and outputs accessed by external graders through LabelStudio.",
+    "workspaces": [
+      "PHA Analytical Vignettes Internal Workspace"
+    ],
+    "workspace_ids": [
+      "pha-analytical-vignettes-workspace"
+    ],
+    "data_collections": [
+      "PHA Analytical Vignettes Data Collection"
+    ],
+    "data_collection_ids": [
+      "pha-analytical-vignettes-collection"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "pha-analytical-vignettes-ws-reader",
+      "pha-analytical-vignettes-dc-reader"
+    ],
+    "writer_groups": [
+      "pha-analytical-vignettes-ws-writer",
+      "pha-analytical-vignettes-dc-writer"
+    ],
+    "owner_groups": [
+      "pha-analytical-vignettes-ws-owner",
+      "pha-analytical-vignettes-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1486717022/PHA+Vignettes+for+Analytical+Validation+Design",
+    "owner": "Biostats",
+    "desc": "Synthetic vignettes for PHA analytical validation"
+  },
+  {
+    "name": "PHA Non-Dogfood LSE Pipeline",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Enables third party vendors access to de-identified data derived from Personal Health Assistant (PHA) AI Agent to assess performance and evaluate triage decisions, potential conditions, escalation recommendations, and care recommendations on real world data through Label Studio Enterprise.",
+    "workspaces": [
+      "PHA Non-Dogfood Internal Workspace",
+      "PHA Non-Dogfood LSE Output Internal Workspace"
+    ],
+    "workspace_ids": [
+      "pha-nondogfood-int-ws",
+      "pha-nondogfood-lse-int-ws"
+    ],
+    "data_collections": [
+      "PHA Non-Dogfood Label Studio Data Collection",
+      "De-Identified Non-Dogfood Base Value Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "pha-nondogfood-lse-dc",
+      "non-dogfood-base-value-silver-layer-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "pha-internal-ws-reader",
+      "pha-lse-ws-reader"
+    ],
+    "writer_groups": [
+      "pha-internal-ws-writer",
+      "pha-lse-ws-writer"
+    ],
+    "owner_groups": [
+      "pha-internal-ws-owner",
+      "pha-lse-ws-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1906737283/PHA+Non-Dogfood+LSE+Pipeline",
+    "owner": "Lawrence Deang, Chelsea Patrichuk, Mike Feng",
+    "desc": "De-identified PHA data access for third-party vendor evaluation"
+  },
+  {
+    "name": "Protege Data Ingestion",
+    "category": "Data Infrastructure",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Data licensing agreement with Protege AI for 200,000 patients comprising linked EHR structured events and clinical notes. 1-year engagement to jumpstart training of Data Science models while Verily's first party data grows.",
+    "workspaces": [
+      "Protege Ingestion Workspace - Internal",
+      "Protege Ingestion Workspace - External"
+    ],
+    "workspace_ids": [
+      "protege-ingestion-ws-int",
+      "protege-ingestion-ws-ext"
+    ],
+    "data_collections": [
+      "Protege Ingestion Data Collection - Internal",
+      "Protege Ingestion Data Collection - External"
+    ],
+    "data_collection_ids": [
+      "protege-ingestion-dc-int",
+      "protege-ingestion-dc-ext"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "protege-ingest-ws-int-reader",
+      "protege-ingest-dc-int-reader"
+    ],
+    "writer_groups": [
+      "protege-ingest-ws-int-writer",
+      "protege-ingest-dc-int-writer"
+    ],
+    "owner_groups": [
+      "protege-ingest-ws-int-owner",
+      "protege-ingest-dc-int-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2175959048/Protege+Data+Ingestion",
+    "owner": "Data Science",
+    "desc": "200K patient EHR and clinical notes from Protege AI"
+  },
+  {
+    "name": "Sensor Export",
+    "category": "Wearables",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Export of device sensor data from Cortex to Workbench for internal customers. Raw and derived sensor metrics (step count, imu, ppg, etc.) decorated with metadata (device serial number, firmware version, etc.). Each customer's data is isolated to separate analysis silver layers, gold layers, and workbench data collections.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "Denali Sensors Study",
+      "Otsuka Sjogrens Sensors Study",
+      "Otsuka ADHD Sensors Study",
+      "Novartis Agnos Sensors Study",
+      "Novartis Sostos Sensors Study"
+    ],
+    "data_collection_ids": [
+      "sensors-studies-denali-data-collection",
+      "sensors-studies-otsuka-sjogrens-data-collection",
+      "sensors-studies-otsuka-adhd-data-collection",
+      "sensors-studies-novartis-agnos-data-collection",
+      "sensors-studies-novartis-sostos-data-collection"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1478721543/Sensor+Export",
+    "owner": "Sam Stentz, Derek Bee, Rishabh Chowdhary",
+    "desc": "Device sensor data export from Cortex to Workbench"
+  },
+  {
+    "name": "Sightline Wastewater Dataset in Verily Workbench",
+    "category": "Public Health",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Sightline Wastewater platform data that analyzes wastewater to provide early warnings about community health and disease trends. Platform manages sample collections from 315 treatment plants across 40+ states in the US with ddPCR, Amplicon Sequencing, and Metagenomic Sequencing analysis methods.",
+    "workspaces": [
+      "Sightline Wastewater Internal Workspace",
+      "Public Health Monitoring Demo"
+    ],
+    "workspace_ids": [
+      "wastewater-internal-ws",
+      "world-cup-public-health-monitoring-demo"
+    ],
+    "data_collections": [
+      "Wastewater Internal Data Delivery Data Collection",
+      "Sightline Wastewater Example Data Collection - External"
+    ],
+    "data_collection_ids": [
+      "wastewater-internal-data-delivery",
+      "sightline-wastewater-external-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "wastewater-users",
+      "wastewater-internal-ws-reader"
+    ],
+    "writer_groups": [
+      "wastewater-internal-ws-writer"
+    ],
+    "owner_groups": [
+      "wastewater-admins",
+      "wastewater-internal-ws-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1667694593/Sightline+Wastewater+Dataset+in+Verily+Workbench",
+    "owner": "Alessandra Breschi, Ali Alagha, Renuka Chadha",
+    "desc": "Wastewater analysis for community health monitoring"
+  },
+  {
+    "name": "Sightline Wastewater: External Data Deliveries via Verily Workbench",
+    "category": "Public Health",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "External data delivery of Sightline Wastewater data to third-party partners (Sanofi, Moderna) via Verily Workbench. Includes SARS-CoV-2 ddPCR/Amplicon data for Sanofi and Norovirus mNGS data for Moderna.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "Sanofi Vaccines Wastewater Surveillance",
+      "Moderna Wastewater DC"
+    ],
+    "data_collection_ids": [
+      "sanofi-vaccines-wastewater-surveillance",
+      "moderna-wastewater-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "sanofi-vaccines-wastewater-surveillance-readers",
+      "moderna-wastewater-dc-reader"
+    ],
+    "writer_groups": [
+      "sanofi-vaccines-wastewater-surveillance-writers",
+      "moderna-wastewater-dc-writer"
+    ],
+    "owner_groups": [
+      "sanofi-verilystudies-admins",
+      "moderna-wastewater-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1548386308/Sightline+Wastewater+External+Data+Deliveries+via+Verily+Workbench",
+    "owner": "Pouya Kheradpour, Alessandra Breschi, Ali Alagha",
+    "desc": "External wastewater data delivery to Sanofi and Moderna"
+  },
+  {
+    "name": "Stargazer Commercial Data Archive",
+    "category": "Data Archive",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Stargazer commercial data archive for retinal images and database tables. Archive created before Stargazer shutdown to preserve valuable data. Contains de-identified data meeting commercial agreement requirements and patient consent.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "Stargazer Commercial Internal Data Collection"
+    ],
+    "data_collection_ids": [
+      "stargazer-commercial-dc-internal"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "stargazer-commercial-dc-reader"
+    ],
+    "writer_groups": [
+      "stargazer-commercial-dc-writer"
+    ],
+    "owner_groups": [
+      "stargazer-commercial-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1608777729/WIP+Stargazer+Commercial+Data+Archive",
+    "owner": "Daniel Choi",
+    "desc": "Archived Stargazer retinal images and database tables"
+  },
+  {
+    "name": "ML Development in Workbench",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Lifelong Health Study - Data Science AI/ML Development workspace to support curation of GLP-1 discontinuation events from unstructured data, designing and implementing AI/ML models and enriching the CDR for the cardiometabolic cohort of Lifelong.",
+    "workspaces": [
+      "Lifelong Health Study - Data Science AI/ML Development Workspace"
+    ],
+    "workspace_ids": [
+      "lifelong-ds-aiml-development-ws"
+    ],
+    "data_collections": [
+      "Lifelong Health Study Data Collection Internal",
+      "Lifelong Health Study Program Assets Data Collection"
+    ],
+    "data_collection_ids": [
+      "lifelong-silver-layer-dc",
+      "lifelong-program-assets-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "lifelong-ds-aiml-development-ws-reader"
+    ],
+    "writer_groups": [
+      "lifelong-ds-aiml-development-ws-writer"
+    ],
+    "owner_groups": [
+      "lifelong-ds-aiml-development-ws-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2173960240/Lifelong+Health+Study+-+Data+Science+AI+ML+Development+in+Workbench",
+    "owner": "Emma Moore",
+    "desc": "Lifelong Health Study AI/ML development workspace"
+  },
+  {
+    "name": "Data Refinery UTSW",
+    "category": "Research Partnership",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Verily and UTSW pilot project to develop EHR-based clinical trial matching technologies. Includes data delivery to UTSW and Centaur for external annotation. Multiple phases covering UTSW data ingestion, Centaur annotation workflows, and data imports to OneVerily.",
+    "workspaces": [
+      "UTSW Workspace"
+    ],
+    "workspace_ids": [
+      "utsw-workspace-3130"
+    ],
+    "data_collections": [
+      "UTSW Data Collection",
+      "Centaur Diagnostics Data Delivery Data Collection",
+      "UTSW Data Delivery Data Collection",
+      "Centaur to Verily Data Delivery Data Collection"
+    ],
+    "data_collection_ids": [
+      "utsw-data-collection",
+      "centaur-dd-dc-ext",
+      "utsw-dd-dc-ext",
+      "centaur-to-verily-dd-dc-ext"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "utsw-ws-reader",
+      "utsw-dc-reader"
+    ],
+    "writer_groups": [
+      "utsw-ws-writer",
+      "utsw-dc-writer"
+    ],
+    "owner_groups": [
+      "utsw-ws-owner",
+      "utsw-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1541275818/Data+Refinery+UTSW",
+    "owner": "Clinical Informatics, Data Science",
+    "desc": "UTSW partnership for EHR-based clinical trial matching"
+  },
+  {
+    "name": "De-Identified Non-Dogfood Zus and Base Internal Data Collections + Claude Access in Workspace",
+    "category": "Data Infrastructure",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Segregates non-dogfood data and de-identifies it for VerilyMe Public Beta dataset analysis. Data analyzed by users performing data quality using AI-assistance (Claude). Enables internal teams to conduct self-service analysis by leveraging Claude and technical workflows.",
+    "workspaces": [
+      "Dogfood Data Removal and De-identification Workspace",
+      "De-Identified Non-Dogfood Zus and Base Workspace",
+      "Base Value and Zus UXR Workspace",
+      "Base Value and Zus Marketing Workspace"
+    ],
+    "workspace_ids": [
+      "dogfood-data-removal-ws",
+      "non-dogfood-zus-base-ws",
+      "base-zus-uxr-ws",
+      "base-zus-marketing-ws"
+    ],
+    "data_collections": [
+      "Base Value Silver Layer Data Collection",
+      "Zus Internal Data Collection",
+      "De-Identified Non-Dogfood Zus Data Collection",
+      "De-Identified Non-Dogfood Base Value Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "base-value-silver-layer-dc",
+      "zus-dc",
+      "non-dogfood-zus-dc",
+      "non-dogfood-base-value-silver-layer-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "non-dogfood-zus-dc-reader",
+      "non-dogfood-base-value-silver-layer-dc-reader"
+    ],
+    "writer_groups": [
+      "dogfood-data-removal-ws-writer",
+      "non-dogfood-zus-base-ws-writer"
+    ],
+    "owner_groups": [
+      "non-dogfood-zus-dc-owner",
+      "non-dogfood-base-value-silver-layer-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1935966219/De-Identified+Non-Dogfood+Zus+and+Base+Internal+Data+Collections+Claude+Access+in+Workspace",
+    "owner": "Joy Huynh",
+    "desc": "De-identified non-dogfood data with Claude AI assistance"
+  },
+  {
+    "name": "CARE Dataset Profiling",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "The CARE DS team is building reusable components to support agentic applications. One of these components is the Longitudinal Patient Narrative. The project produces documentation artifacts that describe high-level details about the dataset for profiling FHIR data.",
+    "workspaces": [
+      "Lightpath Metabolic Data Quality Workspace",
+      "Lifelong Health Study Data Quality Workspace",
+      "Lifelong Health Study - Data Science AI/ML Development Workspace"
+    ],
+    "workspace_ids": [
+      "lightpath-data-quality-ws",
+      "lifelong-data-quality-ws",
+      "lifelong-ds-aiml-development-ws"
+    ],
+    "data_collections": [
+      "Lightpath T1D - Pediatric Silver Layer Data Collection",
+      "Lightpath T1D - Adult Silver Layer Data Collection",
+      "Lightpath Metabolic Silver Layer Data Collection",
+      "Lifelong Health Study Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "t1d-pediatric-silver-layer-dc",
+      "t1d-adult-silver-layer-dc",
+      "lightpath-silver-layer-dc",
+      "lifelong-silver-layer-dc"
+    ],
+    "connected_resources": {
+      "lightpath-data-quality-ws": [
+        "lightpath-silver-layer-dc"
+      ],
+      "lifelong-data-quality-ws": [
+        "lifelong-silver-layer-dc"
+      ]
+    },
+    "reader_groups": [
+      "t1d-pediatric-silver-layer-dc-reader",
+      "t1d-adult-silver-layer-dc-reader",
+      "lightpath-silver-layer-dc-reader",
+      "lifelong-silver-layer-dc-reader"
+    ],
+    "writer_groups": [
+      "production-delivery-service-accounts"
+    ],
+    "owner_groups": [
+      "verily-bvdp-admins"
+    ],
+    "link": "",
+    "owner": "CARE Data Science",
+    "desc": "FHIR data profiling for longitudinal patient narratives"
+  },
+  {
+    "name": "AI-READI Public Dataset Ingestion to VWB",
+    "category": "Research",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "The Data Science (DS) team will be leveraging a 3P strings-attached public dataset to fine-tune their models (Weekly mean glucose estimation) in effort to support feature development for Lightpath.",
+    "workspaces": [
+      "Glycemic Model Development Workspace"
+    ],
+    "workspace_ids": [
+      "glycemic-model-development-ws"
+    ],
+    "data_collections": [
+      "AI-READI Public Dataset Data Collection"
+    ],
+    "data_collection_ids": [
+      "aireadi-public-dataset-dc"
+    ],
+    "connected_resources": {
+      "glycemic-model-development-ws": [
+        "aireadi-public-dataset-dc"
+      ]
+    },
+    "reader_groups": [],
+    "writer_groups": [
+      "aireadi-public-dataset-dc-writer"
+    ],
+    "owner_groups": [
+      "glycemic-model-development-ws-owner",
+      "aireadi-public-dataset-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2010841103/AI-READI+Public+Dataset+Ingestion+to+VWB",
+    "owner": "Data Science",
+    "desc": "Public dataset for glycemic model development"
+  },
+  {
+    "name": "Base-Lifelong Analytics Gold Layer in Workbench",
+    "category": "Analytics",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "The purpose of this data project is to document the delivery of the datasets from Base and Lifelong programs into their respective Data Collections and creation of their corresponding Verily Workbench Groups. Provides non-PII, non-Dogfood Product Analytics Gold layer from OV to Workbench.",
+    "workspaces": [
+      "Base-Lifelong Analytics Gold Layer Workspace"
+    ],
+    "workspace_ids": [
+      "base-lhs-analytics-gold-layer-ws"
+    ],
+    "data_collections": [
+      "Base-Lifelong Analytics Gold Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "base-lhs-analytics-gold-layer-dc"
+    ],
+    "connected_resources": {
+      "base-lhs-analytics-gold-layer-ws": [
+        "base-lhs-analytics-gold-layer-dc"
+      ]
+    },
+    "reader_groups": [
+      "base-lhs-analytics-gold-layer-dc-reader",
+      "base-lhs-analytics-gold-layer-ws-reader"
+    ],
+    "writer_groups": [
+      "base-lhs-analytics-gold-layer-dc-writer",
+      "base-lhs-analytics-gold-layer-ws-writer"
+    ],
+    "owner_groups": [
+      "base-lhs-analytics-gold-layer-dc-owner",
+      "base-lhs-analytics-gold-layer-ws-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2121236505/Base-Lifelong+Analytics+Gold+Layer+in+Workbench",
+    "owner": "Analytics",
+    "desc": "Non-PII product analytics gold layer from Base and Lifelong"
+  },
+  {
+    "name": "1P and Lightpath Silver Layer Data in Workbench for Data Quality",
+    "category": "Data Quality",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Data Launch for the use case of Data Quality. Provides access to silver layer datasets for data quality analysis of 1P and Lightpath data.",
+    "workspaces": [
+      "Base Value Data Quality Workspace",
+      "Lifelong Health Study Data Quality Workspace",
+      "Lightpath Metabolic Data Quality Workspace"
+    ],
+    "workspace_ids": [
+      "base-value-data-quality-ws",
+      "lifelong-data-quality-ws",
+      "lightpath-data-quality-ws"
+    ],
+    "data_collections": [
+      "Base Value Silver Layer Data Collection",
+      "Lightpath T1D - Pediatric Silver Layer Data Collection",
+      "Lightpath T1D - Adult Silver Layer Data Collection",
+      "Lightpath Metabolic Silver Layer Data Collection",
+      "Lifelong Health Study Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "base-value-silver-layer-dc",
+      "t1d-pediatric-silver-layer-dc",
+      "t1d-adult-silver-layer-dc",
+      "lightpath-silver-layer-dc",
+      "lifelong-silver-layer-dc"
+    ],
+    "connected_resources": {
+      "base-value-data-quality-ws": [
+        "base-value-silver-layer-dc",
+        "zus_operational_fhir"
+      ],
+      "lifelong-data-quality-ws": [
+        "base-value-silver-layer-dc",
+        "lifelong-silver-layer-dc"
+      ],
+      "lightpath-data-quality-ws": [
+        "lightpath-silver-layer-dc"
+      ]
+    },
+    "reader_groups": [
+      "base-value-silver-layer-dc-reader",
+      "t1d-pediatric-silver-layer-dc-reader",
+      "t1d-adult-silver-layer-dc-reader",
+      "lightpath-silver-layer-dc-reader",
+      "lifelong-silver-layer-dc-reader"
+    ],
+    "writer_groups": [
+      "base-value-silver-layer-dc-writer",
+      "base-value-data-quality-ws-writer",
+      "lifelong-data-quality-ws-writer",
+      "lightpath-data-quality-ws-writer"
+    ],
+    "owner_groups": [
+      "base-value-silver-layer-dc-owner",
+      "t1d-pediatric-silver-layer-dc-owner",
+      "t1d-adult-silver-layer-dc-owner",
+      "lightpath-silver-layer-dc-owner",
+      "lifelong-silver-layer-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1500774401/1P+and+Lightpath+Silver+Layer+Data+in+Workbench+for+Data+Quality",
+    "owner": "Data Quality",
+    "desc": "Silver layer data quality analysis for 1P and Lightpath"
+  },
+  {
+    "name": "AI Agent Offline Monitoring (Dogfood)",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Provides Model SMEs with access to real-world interaction data from AI agents in production (Dogfood programs), starting with Meal Logging, Health Data Agent (HDA), Personal Health Assistant Agent, and Missions and Barriers Agents.",
+    "workspaces": [
+      "Health Data Agent Dogfood Internal Workspace",
+      "(Dogfood) Health Data Agent Internal Workspace"
+    ],
+    "workspace_ids": [
+      "health-data-agent-int",
+      "health-data-agent-dogfood-int"
+    ],
+    "data_collections": [
+      "Health Data Agent Base Value Dogfood Silver Layer Data Collection",
+      "Health Data Agent Base Value Dogfood Deid Data Collection",
+      "(Dogfood) (Base Value) Health Data Agent Silver Layer Data Collection",
+      "(Dogfood) (Base Value) (De-identified) Health Data Agent Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "health-data-agent-dogfood-dc",
+      "health-data-agent-dogfood-deid-dc",
+      "health-data-agent-base-value-dogfood-silver-dc",
+      "health-data-agent-base-value-dogfood-deid-silver-dc"
+    ],
+    "connected_resources": {
+      "health-data-agent-int": [
+        "health-data-agent-dogfood-dc"
+      ],
+      "health-data-agent-dogfood-int": [
+        "health-data-agent-dogfood-deid-dc",
+        "health-data-agent-base-value-dogfood-silver-dc"
+      ]
+    },
+    "reader_groups": [
+      "health-data-agent-ws-reader",
+      "health-data-agent-dogfood-int-ws-reader",
+      "health-data-agent-dogfood-dc-reader"
+    ],
+    "writer_groups": [
+      "health-data-agent-ws-writer",
+      "health-data-agent-dogfood-int-ws-writer"
+    ],
+    "owner_groups": [
+      "health-data-agent-ws-owner",
+      "health-data-agent-dogfood-int-ws-owner",
+      "health-data-agent-non-dogfood-int-owner",
+      "health-data-agent-dogfood-deid-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1446772744/AI+Agent+Offline+Monitoring+Dogfood",
+    "owner": "Model SMEs",
+    "desc": "Real-world AI agent interaction data from dogfood programs"
+  },
+  {
+    "name": "AI Agent Offline Monitoring (Non-Dogfood)",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Provides Model SMEs and other necessary teams with access to real-world interaction data from AI agents in production for Non-Dogfood programs (Preview, Base, Lightpath, Lifelong).",
+    "workspaces": [
+      "AI Agent De-Identification Script Workspace",
+      "Health Data Agent Non-Dogfood Internal Workspace",
+      "(Non-Dogfood) Health Data Agent Internal Workspace"
+    ],
+    "workspace_ids": [
+      "ai-agent-deid-script-ws",
+      "health-data-agent-nondogfood-int",
+      "health-data-agent-non-dogfood-int"
+    ],
+    "data_collections": [
+      "Health Data Agent Base Value Gold Layer Data Collection",
+      "Health Data Agent Base Value Silver Layer Data Collection",
+      "(Base Value) Health Data Agent Silver Layer Data Collection",
+      "(Base Value) Health Data Agent Gold Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "health-data-agent-base-value-gold-dc",
+      "health-data-agent-base-value-silver-dc",
+      "health-data-agent-base-silver-dc",
+      "health-data-agent-base-gold-dc"
+    ],
+    "connected_resources": {
+      "ai-agent-deid-script-ws": [],
+      "health-data-agent-nondogfood-int": [
+        "health-data-agent-base-value-gold-dc",
+        "health-data-agent-base-value-silver-dc"
+      ]
+    },
+    "reader_groups": [
+      "ai-agent-deid-script-ws-reader",
+      "health-data-agent-non-dogfood-int-ws-reader",
+      "health-data-agent-base-value-gold-dc-reader"
+    ],
+    "writer_groups": [
+      "ai-agent-deid-script-ws-writer",
+      "health-data-agent-non-dogfood-int-ws-writer"
+    ],
+    "owner_groups": [
+      "ai-agent-deid-script-ws-owner",
+      "health-data-agent-non-dogfood-int-ws-owner",
+      "health-data-agent-base-value-gold-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1536065774/AI+Agent+Offline+Monitoring+Non-Dogfood",
+    "owner": "Model SMEs",
+    "desc": "Real-world AI agent interaction data from non-dogfood programs"
+  },
+  {
+    "name": "BI Developer AI Analyst",
+    "category": "Analytics",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Template/placeholder project - no specific details provided",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1977647138/BI+Developer+AI+Analyst",
+    "owner": "BI Team",
+    "desc": "AI-powered business intelligence analyst tool"
+  },
+  {
+    "name": "Data Project For OV Lightpath Data Development For Marketing Outreach and Analytics",
+    "category": "Marketing",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Data development that the Marketing and Commercial Decision Science team will do within OV to support Lightpath prospective member and enrolled member communications, starting with the Lightpath Friends and Family Beta.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {
+      "gold_marketing_datamart": [
+        "silver_operational_filtered_lightpath"
+      ]
+    },
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1514995811/Data+Project+For+OV+Lightpath+Data+Development+For+Marketing+Outreach+and+Analytics",
+    "owner": "Marketing & Commercial Decision Science",
+    "desc": "Lightpath marketing and analytics data development"
+  },
+  {
+    "name": "Fraud Modeling",
+    "category": "Security",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "The Sentinels team is developing a fraud modeling pipeline that trains and deploys ML models to generate a fraud risk score for each VerilyMe participant.",
+    "workspaces": [
+      "Fraud Model Workspace"
+    ],
+    "workspace_ids": [
+      "fraud-model-ws"
+    ],
+    "data_collections": [
+      "Fraud Model Data Collection"
+    ],
+    "data_collection_ids": [
+      "fraud-model-dc"
+    ],
+    "connected_resources": {
+      "fraud-model-ws": [
+        "fraud-model-dc"
+      ]
+    },
+    "reader_groups": [],
+    "writer_groups": [
+      "fraud-model-ws-writer"
+    ],
+    "owner_groups": [
+      "verily-aod-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1483113737/Fraud+Modeling",
+    "owner": "Sentinels Team",
+    "desc": "ML pipeline for fraud detection and risk scoring"
+  },
+  {
+    "name": "VerilyMe Product Data",
+    "category": "Product Analytics",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "This project enables tooling and dashboarding to analyze VerilyMe Product data, including NUX funnel analysis and Pendo behavioral insights.",
+    "workspaces": [
+      "Pendo Silver Layer Workspace"
+    ],
+    "workspace_ids": [
+      "pendo-silver-layer-ws"
+    ],
+    "data_collections": [
+      "Pendo Silver Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "pendo-silver-layer-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "pendo-silver-layer-dc-reader"
+    ],
+    "writer_groups": [
+      "pendo-silver-layer-dc-writer"
+    ],
+    "owner_groups": [
+      "pendo-silver-layer-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1435535753/VerilyMe+Product+Data",
+    "owner": "Product Analytics",
+    "desc": "VerilyMe product analytics including NUX and Pendo"
+  },
+  {
+    "name": "Data Quality Product Metrics",
+    "category": "Data Quality",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Initiative to measure the health and impact of the DQ squad and the system it builds.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1454768142/Data+Quality+Product+Metrics",
+    "owner": "Data Quality Squad",
+    "desc": "Metrics for data quality squad health and impact"
+  },
+  {
+    "name": "Lightpath Internal Gold Layer",
+    "category": "Data Infrastructure",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Document delivery of Lightpath datasets into Data Collections for Clinical Operations and approved teams.",
+    "workspaces": [
+      "Lightpath Metabolic Internal Gold Layer Workspace"
+    ],
+    "workspace_ids": [
+      "lightpath-gold-layer-ws"
+    ],
+    "data_collections": [
+      "Lightpath Metabolic Gold Layer Data Collection"
+    ],
+    "data_collection_ids": [
+      "lightpath-gold-layer-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "lightpath-gold-layer-dc-reader"
+    ],
+    "writer_groups": [
+      "lightpath-gold-layer-dc-writer"
+    ],
+    "owner_groups": [
+      "lightpath-gold-layer-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2008383899/Lightpath+Internal+Gold+Layer",
+    "owner": "Clinical Operations",
+    "desc": "Lightpath gold layer for Clinical Operations"
+  },
+  {
+    "name": "Lightpath SFTP Outbound Data Delivery",
+    "category": "Data Infrastructure",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Data delivery infrastructure for Lightpath external data delivery via SFTP to healthcare providers.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "Highmark Lightpath DD",
+      "ABCBS Lightpath DD",
+      "7-Eleven Lightpath DD"
+    ],
+    "data_collection_ids": [
+      "highmark-lightpath-dd-ext",
+      "ABCBS-lightpath-dd-ext",
+      "7eleven-lightpath-dd-ext"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1623425025/Lightpath+SFTP+Outbound+Data+Delivery",
+    "owner": "Data Delivery",
+    "desc": "External data delivery via SFTP to healthcare providers"
+  },
+  {
+    "name": "Zus Explore (Onduo HIE)",
+    "category": "Research",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Early stage experimentation with Zus HIE data for Onduo patients to inform treatment plans and AI/ML development.",
+    "workspaces": [
+      "Onduo Zus AI Production"
+    ],
+    "workspace_ids": [
+      "onduo-zus-ai-production"
+    ],
+    "data_collections": [
+      "Zus Data Collection"
+    ],
+    "data_collection_ids": [
+      "zus"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1439989761/Zus+Explore+Onduo+HIE",
+    "owner": "Onduo",
+    "desc": "Zus HIE data exploration for Onduo treatment planning"
+  },
+  {
+    "name": "Zus Health Internal Data Collection",
+    "category": "Data Infrastructure",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Delivery of Zus Silver Layer dataset to Verily Workbench for data quality and enrichment work.",
+    "workspaces": [
+      "Zus CI Workspace"
+    ],
+    "workspace_ids": [
+      "zus-ci-ws"
+    ],
+    "data_collections": [
+      "Zus Internal Data Collection"
+    ],
+    "data_collection_ids": [
+      "zus-dc"
+    ],
+    "connected_resources": {
+      "zus-ci-ws": [
+        "zus-dc"
+      ]
+    },
+    "reader_groups": [],
+    "writer_groups": [
+      "zus-ci-ws-writer"
+    ],
+    "owner_groups": [
+      "zus-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1587249155/Zus+Health+Internal+Data+Collection",
+    "owner": "Data Management",
+    "desc": "Zus silver layer for data quality and enrichment"
+  },
+  {
+    "name": "Zus and VerilyMe Silver Layer Access for Model SMEs",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "De-identification of silver layers for Model SMEs to access in VWB for AI/ML development.",
+    "workspaces": [
+      "VerilyMe RWD AI Curation De-identified Workspace"
+    ],
+    "workspace_ids": [
+      "verilyme-rwd-ai-curation-deid-ws"
+    ],
+    "data_collections": [
+      "De-Identified Non-Dogfood Zus Data Collection"
+    ],
+    "data_collection_ids": [
+      "non-dogfood-zus-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1761017913/Zus+and+VerilyMe+Silver+Layer+Access+for+Model+SMEs",
+    "owner": "Model SMEs",
+    "desc": "De-identified silver layers for AI/ML development"
+  },
+  {
+    "name": "Zus Benchmarking to Claims",
+    "category": "Analytics",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Compare HIE-sourced clinical data (Zus Health) against health insurance claims data (Komodo Health).",
+    "workspaces": [
+      "VerilyMe Token Generation Workspace",
+      "Zus Benchmarking Analysis Workspace"
+    ],
+    "workspace_ids": [
+      "verilyme-token-generation-ws",
+      "zus-benchmarking-to-claims-analysis-ws"
+    ],
+    "data_collections": [
+      "Base Value Silver Layer DC",
+      "Zus Internal DC"
+    ],
+    "data_collection_ids": [
+      "base-value-silver-layer-dc",
+      "zus-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1657929729/Zus+Benchmarking+to+Claims",
+    "owner": "Analytics",
+    "desc": "Compare HIE data against health insurance claims"
+  },
+  {
+    "name": "Zus Missing Data Tracker",
+    "category": "Data Quality",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Sharing missing health record data reports with Zus via Verily Workbench for gap identification.",
+    "workspaces": [
+      "PII Workspace"
+    ],
+    "workspace_ids": [
+      "zus-health-record-reporting"
+    ],
+    "data_collections": [
+      "PII Data Collection"
+    ],
+    "data_collection_ids": [
+      "zus-ext-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1447657497/Zus+Missing+Data+Tracker",
+    "owner": "Data Quality",
+    "desc": "Missing health record reporting to Zus"
+  },
+  {
+    "name": "Onduo: Datamarts and Billing Bucket Migration",
+    "category": "Data Migration",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Migration of legacy Onduo BigQuery datasets and GCS bucket data to Workbench.",
+    "workspaces": [
+      "Onduo Workspace"
+    ],
+    "workspace_ids": [
+      "onduo-workspace"
+    ],
+    "data_collections": [
+      "Legacy Onduo Data Collection"
+    ],
+    "data_collection_ids": [
+      "onduo-legacy-ingestion-data-collection"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1541799957/Onduo+Datamarts+and+Billing+Bucket+Migration",
+    "owner": "Onduo",
+    "desc": "Legacy Onduo data migration to Workbench"
+  },
+  {
+    "name": "Study Migrations",
+    "category": "Data Migration",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Migration of legacy studies and projects from Google.com into Verily.Health as part of Flywheel.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1529905153/Study+Migrations",
+    "owner": "Data Management",
+    "desc": "Legacy study migrations from Google.com to Verily.Health"
+  },
+  {
+    "name": "Workbench Unique Login Count Metric",
+    "category": "Analytics",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "Script to generate monthly unique login counts for All of Us organizations to satisfy contract requirements.",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [],
+    "data_collection_ids": [],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1484587060/Workbench+unique+login+count+metric",
+    "owner": "Workbench Team",
+    "desc": "Monthly unique login counts for All of Us"
+  },
+  {
+    "name": "HealthVerity Data Integration",
+    "category": "Research",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Integration of ~10,000 de-identified EMR records for EHR model development and clinical decision support.",
+    "workspaces": [
+      "HV Data Integration Workspace"
+    ],
+    "workspace_ids": [
+      "hv-data-integration"
+    ],
+    "data_collections": [
+      "HV Data Integration DC",
+      "HV Labeling"
+    ],
+    "data_collection_ids": [
+      "hv-data-integration-data-collection",
+      "hv-labeling"
+    ],
+    "connected_resources": {},
+    "reader_groups": [],
+    "writer_groups": [],
+    "owner_groups": [],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1486716999/HealthVerity+Data+Integration",
+    "owner": "Data Science",
+    "desc": "10K de-identified EMR records for EHR model development"
+  },
+  {
+    "name": "Insight Engine",
+    "category": "AI/ML",
+    "assetType": "Workspace",
+    "status": "Active",
+    "accessLevel": "Reader",
+    "description": "LLM-based model that derives insights from multiple data sources (device data, wastewater, meal logs, HIE) for a single user. Testing on real user data from Base and Lightpath before production deployment. Data types include HIE/Zus data, Device data (HK/HC), Meal Log data, and Wastewater data.",
+    "workspaces": [
+      "Data Insight Engine Workspace"
+    ],
+    "workspace_ids": [
+      "data-insight-engine-ws"
+    ],
+    "data_collections": [
+      "Base Value Silver Layer Data Collection",
+      "Zus Internal Data Collection"
+    ],
+    "data_collection_ids": [
+      "base-value-silver-layer-dc",
+      "zus-dc"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "insight-engine-ws-reader"
+    ],
+    "writer_groups": [
+      "insight-engine-ws-writer"
+    ],
+    "owner_groups": [
+      "insight-engine-ws-reader"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/2122252291/Insight+Engine",
+    "owner": "Claudia Serrano Amenos",
+    "desc": "LLM-based insights from device, wastewater, meal logs, and HIE data"
+  },
+  {
+    "name": "Legacy CSP Migration to Enable DSRs",
+    "category": "Data Migration",
+    "assetType": "Data Collection",
+    "status": "Active",
+    "accessLevel": "Writer",
+    "description": "Migration of L'Oreal My Skin & Hair Journey Registry and L'Oreal Deep Dive studies from Google.com GCP into Verily.Health Workbench as part of Flywheel. Enables processing of Data Subject Requests (DSRs) including Access/Portability, Rectification, and Deletions. Data retention for 15 years from study close (until 2040).",
+    "workspaces": [],
+    "workspace_ids": [],
+    "data_collections": [
+      "L'Oreal My Skin & Hair Registry",
+      "L'Oreal Deep Dive"
+    ],
+    "data_collection_ids": [
+      "loreal-skin-hair-registry",
+      "loreal-deep-dive"
+    ],
+    "connected_resources": {},
+    "reader_groups": [
+      "loreal-skin-hair-registry-reader",
+      "loreal-deep-dive-reader",
+      "production-delivery-service-accounts"
+    ],
+    "writer_groups": [
+      "loreal-skin-hair-registry-dc-writer",
+      "loreal-deep-dive-dc-writer",
+      "P_2_migration-dc-writer",
+      "production-delivery-service-accounts"
+    ],
+    "owner_groups": [
+      "verily-aod-owner",
+      "P_2_migration-dc-owner",
+      "loreal-skin-hair-registry-dc-owner",
+      "loreal-deep-dive-dc-owner"
+    ],
+    "link": "https://verily.atlassian.net/wiki/spaces/DATA/pages/1529053571/Legacy+CSP+Migration+to+Enable+DSRs",
+    "owner": "Data Management",
+    "desc": "L'Oreal study migration to enable data subject requests"
+  }
+]
